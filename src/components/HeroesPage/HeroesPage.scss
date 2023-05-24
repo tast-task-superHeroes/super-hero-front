@@ -1,0 +1,76 @@
+.heroPage {
+  margin: auto;
+  max-width: 1200px;
+
+
+  &__addNew {
+    margin-bottom: 14px;
+
+    &:hover {
+      background-color: cadetblue;
+    }
+  }
+
+  &__list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+
+    margin-bottom: 40px;
+  }
+
+  &__pagination {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__button {
+    width: 30px;
+    height: 30px;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+
+    &--disable:hover {
+      background-color: cadetblue;
+    }
+  }
+
+  &__left {
+    background-image: url('../../icons/blackArrowLeft.svg');
+    margin-right: 10px;
+  }
+
+  &__right {
+    background-image: url('../../icons/blackArrowRight.svg');
+    margin-left: 10px;
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+    width: 30px;
+    height: 30px;
+    margin:0;
+    padding: 0;
+    background-color: white;
+    text-indent: 0;
+    list-style-type: none;
+    cursor: pointer;
+
+    &:hover {
+      background-color: cadetblue;
+    }
+
+    &:not(:last-child) {
+      margin-right: 4px;
+    }
+
+    &--active {
+      background-color: aqua;
+    }
+  }
+}

@@ -1,0 +1,10 @@
+@import './styles/reset.scss';
+@import './styles/normalize.scss';
+
+
+.main {
+  display: flex;
+  min-height: 100vh;
+  background: rgb(2,0,36);
+  background: linear-gradient(195deg, rgba(2,0,36,1) 0%, rgba(107,193,158,1) 0%, rgba(23,207,255,1) 100%);
+}

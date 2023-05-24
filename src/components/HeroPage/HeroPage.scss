@@ -1,0 +1,64 @@
+.heroItem {
+  max-width: 1200px;
+  height: max-content;
+  position: relative;
+  margin: 0 auto;
+  margin-top: 40px;
+  background: radial-gradient(circle at 100% 100%, #ffffff 0, #ffffff 6px, transparent 6px) 0% 0%/8px 8px no-repeat,
+            radial-gradient(circle at 0 100%, #ffffff 0, #ffffff 6px, transparent 6px) 100% 0%/8px 8px no-repeat,
+            radial-gradient(circle at 100% 0, #ffffff 0, #ffffff 6px, transparent 6px) 0% 100%/8px 8px no-repeat,
+            radial-gradient(circle at 0 0, #ffffff 0, #ffffff 6px, transparent 6px) 100% 100%/8px 8px no-repeat,
+            linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 4px) calc(100% - 16px) no-repeat,
+            linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 16px) calc(100% - 4px) no-repeat,
+            conic-gradient(#ff0000 0%, #ffff00 16.67%, #00ff00 33.33%, #00ffff 50%, #0000ff 66.67%, #ff00ff 83.33%, #ff0000 100%);
+  border-radius: 8px;
+  padding: 17px;
+  box-sizing: border-box;
+
+  &__button {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    &:hover {
+      background-color: cadetblue;
+    }
+  }
+
+  &__back {
+    position: static;
+    margin-right: 6px;
+    background-image: url('../../icons/blackArrowLeft.svg');
+  }
+
+  &__delete {
+    background-image: url('../../icons/blackClose.svg');
+  }
+
+  &__edit {
+    top: 17px;
+    right: 17px;
+    background-image: url('../../icons/edit_icon.svg');
+  }
+
+  &__images {
+    display: flex;
+    justify-content: center;
+    column-gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  &__image {
+    width: 200px;
+    height: 250px;
+  }
+
+  &__information {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    max-width: 600px;
+  }
+}

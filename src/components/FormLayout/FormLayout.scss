@@ -1,5 +1,16 @@
 @import "~bootstrap/scss/bootstrap";
 
+.mb-2 {
+  position: relative;
+}
+
+.require {
+  position: absolute;
+  color: red;
+  right: 10px;
+  top: 11px;
+}
+
 .headerForm {
   display: flex;
   justify-content: space-between;
@@ -21,5 +32,10 @@
 
 .formTitle {
   margin-right: 6px;
+}
+
+.form__buttons {
+  display: flex;
+  justify-content: space-between;
 }
 

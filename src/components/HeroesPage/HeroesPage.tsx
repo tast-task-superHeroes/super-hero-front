@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import Button from 'react-bootstrap/Button';
 import './HeroesPage.scss';
 import { Hero } from '../../types/hero';
 import { getSuperHeroes } from "../../api/request";
@@ -7,12 +8,12 @@ import { Loader } from "../Loader";
 import { itemInPage } from "../../constant";
 import classNames from 'classnames';
 import { FormLayout } from "../FormLayout";
-
-
+import { SuccessfulMessage } from "../SuccessfulMessage";
 
 export const HeroesPage = () => {
   const [allHeroes, setAllHeroes] = useState<Hero[]>([]);
   const [isOpenAddForm, setIsOpenAddForm] = useState(false);
+  const [isSuccessful, setIsSuccessful] = useState(false);
   const [page, setPage] = useState(0);
   const [error, setError] = useState('');
 
@@ -30,6 +31,14 @@ export const HeroesPage = () => {
     setPage(prev => prev + number);
   };
 
+  const openViewCHeck = () => {
+    setIsSuccessful(true);
+
+    setTimeout(() => {
+      setIsSuccessful(false);
+    }, 3000);
+  };
+
   useEffect(() => {
     getAllHeroes();
   }, [isOpenAddForm]);
@@ -45,6 +54,14 @@ export const HeroesPage = () => {
     return <h1>{error}</h1>
   }
 
+  if (isSuccessful) {
+    return (
+      <div className="heroPage">
+        <SuccessfulMessage />
+      </div>
+    )
+  }
+
   return (
     <div
       className="heroPage"
@@ -53,16 +70,22 @@ export const HeroesPage = () => {
       {allHeroes.length ? (
       isOpenAddForm ? (
         <div className="heroItem">
-          <FormLayout isRequired={true} setIsOpen={setIsOpenAddForm} />
+          <FormLayout
+            isRequired={true}
+            setIsOpen={setIsOpenAddForm}
+            openViewCHeck={openViewCHeck}
+          />
         </div>
       ) : (
         <>
-          <button
+          <Button
             className="heroPage__addNew"
+            variant="primary"
+            type="button"
             onClick={() => setIsOpenAddForm(true)}
           >
-            Add new
-          </button>
+            Add New Hero
+          </Button>
           <div className="heroPage__list">
 
               {allHeroes.slice(heroFrom, heroTo).map(hero => (

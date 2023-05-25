@@ -11,6 +11,7 @@ type Props = {
   isRequired: boolean;
   heroId?: number;
   setIsOpen: (value: boolean) => void;
+  openViewCHeck: () => void;
 }
 
 export const FormLayout: FC<Props> = ({
@@ -18,6 +19,7 @@ export const FormLayout: FC<Props> = ({
   isRequired,
   heroId,
   setIsOpen,
+  openViewCHeck,
 }) => {
   const [nickname, setNickName] = useState('');
   const [realName, setRealName] = useState('');
@@ -48,6 +50,7 @@ export const FormLayout: FC<Props> = ({
 
 
   const handleUpdateHero = async() => {
+    openViewCHeck();
     const newValues: Partial<Hero> = {};
 
     if (nickname) {
@@ -83,6 +86,7 @@ export const FormLayout: FC<Props> = ({
   }
   
   const handleCreateHero = async() => {
+    openViewCHeck()
     const newSuperHero = {
       nickname,
       real_name: realName,
@@ -109,15 +113,14 @@ export const FormLayout: FC<Props> = ({
   return (
     <Form>
       <div className="headerForm">
-        {isRequired ? ( 
-          <h3 className="formTitle" >All fields must be full</h3>
-        ) : (
+        {isRequired || ( 
           <h3 className="formTitle" >{hero?.nickname}</h3>
         )}
-        
-        <button className="closeForm" onClick={() => setIsOpen(false)}/>
       </div>
-      <Form.Group className="mb-3">
+      <Form.Group className="mb-2">
+        {isRequired && (
+          <span className="require">*</span>
+        )}
         <Form.Control
           aria-label="name"
           maxLength={255}
@@ -129,6 +132,9 @@ export const FormLayout: FC<Props> = ({
       </Form.Group>
 
       <Form.Group className="mb-2">
+        {isRequired && (
+            <span className="require">*</span>
+        )}
         <Form.Control
           maxLength={255}
           type="text"
@@ -139,6 +145,9 @@ export const FormLayout: FC<Props> = ({
       </Form.Group>
 
       <Form.Group className="mb-2">
+        {isRequired && (
+              <span className="require">*</span>
+        )}
         <Form.Control
           aria-label="description"
           maxLength={255}
@@ -150,6 +159,9 @@ export const FormLayout: FC<Props> = ({
       </Form.Group>
 
       <Form.Group className="mb-2">
+        {isRequired && (
+          <span className="require">*</span>
+        )}
         <Form.Control
           maxLength={255}
           type="text"
@@ -162,6 +174,7 @@ export const FormLayout: FC<Props> = ({
       {isRequired && (
         <>
           <Form.Group className="mb-2">
+            <span className="require">*</span>
             <Form.Control
               maxLength={255}
               type="text"
@@ -171,6 +184,7 @@ export const FormLayout: FC<Props> = ({
             />
         </Form.Group>
         <Form.Group className="mb-2">
+            <span className="require">*</span>
             <Form.Control
               maxLength={255}
               type="text"
@@ -183,6 +197,9 @@ export const FormLayout: FC<Props> = ({
       )}
 
       <Form.Group className="mb-2">
+        {isRequired && (
+          <span className="require">*</span>
+        )}
         <Form.Control
           maxLength={255}
           type="text"
@@ -193,6 +210,9 @@ export const FormLayout: FC<Props> = ({
       </Form.Group>
 
       <Form.Group className="mb-2">
+        {isRequired && (
+          <span className="require">*</span>
+        )}
         <Form.Control
           maxLength={255}
           type="text"
@@ -205,6 +225,7 @@ export const FormLayout: FC<Props> = ({
       {isRequired && (
         <>
           <Form.Group className="mb-2">
+            <span className="require">*</span>
             <Form.Control
               maxLength={255}
               type="text"
@@ -214,6 +235,7 @@ export const FormLayout: FC<Props> = ({
             />
           </Form.Group>
           <Form.Group className="mb-2">
+            <span className="require">*</span>
             <Form.Control
               maxLength={255}
               type="text"
@@ -225,26 +247,37 @@ export const FormLayout: FC<Props> = ({
         </>
       )}
 
-        {isRequired ? (
-          <Button
-            className={classNames({'headerForm__button': isDisabledButton})}
-            variant="primary"
-            type="button"
-            disabled={isDisabledButton}
-            onClick={() => handleCreateHero()}
-          >
-            Add
-        </Button>
-        ) : (
-          <Button
-            className="test-button"
-            variant="primary"
-            type="button"
-            onClick={() => handleUpdateHero()}
-          >
-            Update
+        <div className="form__buttons">
+          {isRequired ? (
+            <Button
+              className={classNames({'headerForm__button': isDisabledButton})}
+              variant="primary"
+              type="button"
+              disabled={isDisabledButton}
+              onClick={() => handleCreateHero()}
+            >
+              Add
           </Button>
-        )}
+          ) : (
+            <Button
+              className="test-button"
+              variant="primary"
+              type="button"
+              onClick={() => handleUpdateHero()}
+            >
+              Update
+            </Button>
+          )}
+
+            <Button
+              className="test-button"
+              variant="danger"
+              type="button"
+              onClick={() => setIsOpen(false)}
+            >
+              Close
+            </Button>
+        </div>
     </Form>
   );
 }

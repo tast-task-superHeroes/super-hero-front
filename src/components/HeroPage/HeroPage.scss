@@ -46,6 +46,7 @@
   &__images {
     display: flex;
     justify-content: center;
+    object-fit: contain;
     column-gap: 10px;
     margin-bottom: 20px;
   }

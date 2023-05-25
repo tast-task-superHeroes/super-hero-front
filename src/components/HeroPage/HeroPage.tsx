@@ -5,10 +5,12 @@ import { Hero } from '../../types/hero';
 import { getSuperHeroById, removeSuperHero } from '../../api/request';
 import { FormLayout } from '../FormLayout';
 import { Loader } from '../Loader';
+import { SuccessfulMessage } from '../SuccessfulMessage';
 
 export const HeroPage = () => {
   const [superHero, setSuperHero] = useState<Hero>();
   const [error, setError] = useState('');
+  const [isSuccessful, setIsSuccessful] = useState(false);
   const [isOpenChange, setIsOpenChange] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -25,13 +27,23 @@ export const HeroPage = () => {
   };
 
   const removeHero = async(heroId: number) => {
+    openViewCHeck();
+
     try {
       await removeSuperHero(heroId);
-      navigate('/')
+      navigate('/');
     } catch {
       setError('Failed to remove Super Hero from server');
     }
-  }
+  };
+
+  const openViewCHeck = () => {
+    setIsSuccessful(true);
+
+    setTimeout(() => {
+      setIsSuccessful(false);
+    }, 3000);
+  };
 
   useEffect(() => {
     getSuperHero();
@@ -41,6 +53,14 @@ export const HeroPage = () => {
   if (error) {
     return (
       <h1>{error}</h1>
+    )
+  };
+
+  if (isSuccessful) {
+    return (
+      <div className="heroItem">
+        <SuccessfulMessage />
+      </div>
     )
   }
   
@@ -54,6 +74,7 @@ export const HeroPage = () => {
             isRequired={false}
             heroId={heroId}
             setIsOpen={setIsOpenChange}
+            openViewCHeck={openViewCHeck}
           />
         ) : (
         <>

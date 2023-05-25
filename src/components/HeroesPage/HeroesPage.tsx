@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import './HeroesPage.scss';
 import { Hero } from '../../types/hero';
-import { getSuperHeroes } from "../../api/request";
+import { getSuperHeroes, removeSuperHero } from "../../api/request";
 import { HeroItem } from "../HeroItem";
 import { Loader } from "../Loader";
 import { itemInPage } from "../../constant";
@@ -28,7 +28,7 @@ export const HeroesPage = () => {
 
   const handleChangePage = (number: number) => {
     setPage(prev => prev + number);
-  }
+  };
 
   useEffect(() => {
     getAllHeroes();
@@ -46,7 +46,10 @@ export const HeroesPage = () => {
   }
 
   return (
-    <div className="heroPage">
+    <div
+      className="heroPage"
+      data-testid="test"
+    >
       {allHeroes.length ? (
       isOpenAddForm ? (
         <div className="heroItem">

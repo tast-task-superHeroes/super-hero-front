@@ -8,7 +8,11 @@ type Props = {
   id: number;
 }
 
-export const HeroItem: FC<Props> = ({ image, nickname, id }) => {
+export const HeroItem: FC<Props> = ({
+  image,
+  nickname,
+  id,
+}) => {
   return (
     <Link to={`/hero/${id}`} className="card">
       <img
@@ -16,7 +20,6 @@ export const HeroItem: FC<Props> = ({ image, nickname, id }) => {
         alt={nickname}
         className="card__image"
       />
-
       <span className="card__name" >{nickname}</span>
     </Link>
   );

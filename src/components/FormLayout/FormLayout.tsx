@@ -119,6 +119,7 @@ export const FormLayout: FC<Props> = ({
       </div>
       <Form.Group className="mb-3">
         <Form.Control
+          aria-label="name"
           maxLength={255}
           type="text"
           placeholder="nickname"
@@ -139,6 +140,7 @@ export const FormLayout: FC<Props> = ({
 
       <Form.Group className="mb-2">
         <Form.Control
+          aria-label="description"
           maxLength={255}
           type="text"
           placeholder="origin description"
@@ -235,6 +237,7 @@ export const FormLayout: FC<Props> = ({
         </Button>
         ) : (
           <Button
+            className="test-button"
             variant="primary"
             type="button"
             onClick={() => handleUpdateHero()}

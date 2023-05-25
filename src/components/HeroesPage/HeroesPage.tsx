@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import './HeroesPage.scss';
 import { Hero } from '../../types/hero';
-import { getSuperHeroes, removeSuperHero } from "../../api/request";
+import { getSuperHeroes } from "../../api/request";
 import { HeroItem } from "../HeroItem";
 import { Loader } from "../Loader";
 import { itemInPage } from "../../constant";

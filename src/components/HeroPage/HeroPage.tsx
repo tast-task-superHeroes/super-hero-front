@@ -35,6 +35,7 @@ export const HeroPage = () => {
 
   useEffect(() => {
     getSuperHero();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [heroId, isOpenChange]);
 
   if (error) {

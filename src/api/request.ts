@@ -1,6 +1,6 @@
 import { Hero } from "../types/hero";
 
-const BASE_URL = 'http://localhost:4152/heroes';
+const BASE_URL = 'https://superhero-bc13.onrender.com/heroes';
 
 
 export const getSuperHeroes = async () => {

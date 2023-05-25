@@ -7,14 +7,12 @@ import { Loader } from "../Loader";
 import { itemInPage } from "../../constant";
 import classNames from 'classnames';
 import { FormLayout } from "../FormLayout";
-import { useNavigate } from "react-router-dom";
 
 
 
 export const HeroesPage = () => {
   const [allHeroes, setAllHeroes] = useState<Hero[]>([]);
   const [isOpenAddForm, setIsOpenAddForm] = useState(false);
-  const navigate = useNavigate();
   const [page, setPage] = useState(0);
   const [error, setError] = useState('');
 

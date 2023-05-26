@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import './HeroPage.scss';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Hero } from '../../types/hero';
 import { getSuperHeroById, removeSuperHero } from '../../api/request';
 import { FormLayout } from '../FormLayout';
@@ -16,7 +16,7 @@ export const HeroPage = () => {
   const location = useLocation();
   const heroId = +location.pathname.slice(6);
 
-  const getSuperHero = async () => {
+  const getSuperHero = useCallback(async () => {
     try {
       const superHero = await getSuperHeroById(heroId);
 
@@ -24,9 +24,17 @@ export const HeroPage = () => {
     } catch {
       setError('Failed to get Super Hero from server');
     }
-  };
+  }, [heroId]);
 
-  const removeHero = async(heroId: number) => {
+  const openViewCHeck = useCallback(() => {
+    setIsSuccessful(true);
+
+    setTimeout(() => {
+      setIsSuccessful(false);
+    }, 3000);
+  }, []);
+
+  const removeHero = useCallback(async(heroId: number) => {
     openViewCHeck();
 
     try {
@@ -35,20 +43,12 @@ export const HeroPage = () => {
     } catch {
       setError('Failed to remove Super Hero from server');
     }
-  };
+  }, [navigate, openViewCHeck]);
 
-  const openViewCHeck = () => {
-    setIsSuccessful(true);
-
-    setTimeout(() => {
-      setIsSuccessful(false);
-    }, 3000);
-  };
 
   useEffect(() => {
     getSuperHero();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [heroId, isOpenChange]);
+  }, [getSuperHero, heroId, isOpenChange]);
 
   if (error) {
     return (

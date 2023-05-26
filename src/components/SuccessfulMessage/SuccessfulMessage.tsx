@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import './SuccessfulMessage.scss';
+import classNames from 'classnames';
 
 export const SuccessfulMessage = () => {
   const [isAnimating, setIsAnimating] = useState(false);
@@ -16,7 +17,7 @@ export const SuccessfulMessage = () => {
   }, []);
 
   return (
-    <div className={`success-animation ${isAnimating ? 'animate' : ''}`}>
+    <div className={classNames('success-animation', {'animate': isAnimating})}>
       <span>Success</span>
     </div>
   );
